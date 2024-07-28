@@ -1,0 +1,31 @@
+name: check-codebase
+
+on:
+  push:
+
+jobs:
+  check-codebase:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: 'npm'
+
+      - name: cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install deps
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint
+      
+      - name: Run format
+        run: npm run format
