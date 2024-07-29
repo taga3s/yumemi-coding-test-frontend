@@ -3,6 +3,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import { apiClient, PopulationData, PopulationResponse } from '../../../api';
 import type { Prefecture } from '../../../api/prefectures/types';
+import { Message } from '../../Message';
 import { StatisticsControl } from './StatisticsControl';
 import { StatisticsLineGraph } from './StatisticsLineGraph';
 
@@ -53,7 +54,7 @@ const StatisticsContainer = () => {
   };
 
   return (
-    <ErrorBoundary fallback={<span>Some thing went wrong...</span>}>
+    <ErrorBoundary fallback={<Message message='Some thing went wrong...' />}>
       <StatisticsControl selectedPrefectures={selectedPrefectures} onRearrangeData={onRearrangeData} />
       <StatisticsLineGraph
         populationData={populationData}

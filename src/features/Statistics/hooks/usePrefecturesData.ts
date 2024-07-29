@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { apiClient, Prefecture, type PrefecturesResponse } from '../../../api';
 
-const fetcher = async (abortController: AbortController) => {
-  return await apiClient<PrefecturesResponse>('/prefectures', abortController);
-};
+const fetcher = async (abortController: AbortController) => await apiClient<PrefecturesResponse>('/prefectures', abortController);
 
 const usePrefecturesData = () => {
   const [prefecturesData, setPrefecturesData] = useState<Prefecture[]>([]);
@@ -25,6 +23,7 @@ const usePrefecturesData = () => {
 
   return {
     prefecturesData: prefecturesData,
+    isLoading: prefecturesData.length === 0,
   };
 };
 
