@@ -55,7 +55,11 @@ const StatisticsContainer = () => {
   return (
     <ErrorBoundary fallback={<span>Some thing went wrong...</span>}>
       <StatisticsControl selectedPrefectures={selectedPrefectures} onRearrangeData={onRearrangeData} />
-      <StatisticsLineGraph populationData={populationData} selectedPopulationDataLabel={selectedPopulationDataLabel} onChangeSelectedPopulationDataLabel={onChangeSelectedPopulationDataLabel} />
+      <StatisticsLineGraph
+        populationData={populationData}
+        selectedPopulationDataLabel={selectedPopulationDataLabel}
+        onChangeSelectedPopulationDataLabel={onChangeSelectedPopulationDataLabel}
+      />
     </ErrorBoundary>
   );
 };

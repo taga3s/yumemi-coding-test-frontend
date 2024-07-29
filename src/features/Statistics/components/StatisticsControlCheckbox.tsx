@@ -15,7 +15,7 @@ const StatisticsControlCheckbox: FC<Props> = (props) => {
 
   return (
     <label className={statisticsControlCheckBoxLabel} htmlFor={`${prefCode}`}>
-      <input type="checkbox" id={`${prefCode}`} checked={checked} onChange={() => onRearrangeData({ prefName, prefCode })} />
+      <input type='checkbox' id={`${prefCode}`} checked={checked} onChange={() => onRearrangeData({ prefName, prefCode })} />
       {prefName}
     </label>
   );

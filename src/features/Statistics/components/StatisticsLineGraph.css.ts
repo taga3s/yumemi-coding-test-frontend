@@ -10,19 +10,19 @@ const statisticsLineGraphLayout = style({
 });
 
 const statisticsLineGraphSelectBox = style({
-  display: "inline-flex",
-  alignItems: "center",
-  gap: "8px",
-  padding: "4px",
-})
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '8px',
+  padding: '4px',
+});
 
 const statisticsLineGraphSelectBoxInner = style({
-  appearance: "none",
-  padding: "8px",
+  appearance: 'none',
+  padding: '8px',
   backgroundColor: vars.color.white,
-  border: "1px solid #ccc",
-  borderRadius: "8px",
-  cursor: "pointer",
-})
+  border: '1px solid #ccc',
+  borderRadius: '8px',
+  cursor: 'pointer',
+});
 
 export { statisticsLineGraphLayout, statisticsLineGraphSelectBox, statisticsLineGraphSelectBoxInner };

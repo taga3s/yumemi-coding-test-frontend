@@ -66,9 +66,13 @@ const StatisticsLineGraph: FC<Props> = (props) => {
       ) : (
         <div>
           <div>
-            <label className={statisticsLineGraphSelectBox} htmlFor="population-data-range">
+            <label className={statisticsLineGraphSelectBox} htmlFor='population-data-range'>
               人口範囲を選択します
-              <select className={statisticsLineGraphSelectBoxInner} id="population-data-range" onChange={(e) => onChangeSelectedPopulationDataLabel(e.target.value)}>
+              <select
+                className={statisticsLineGraphSelectBoxInner}
+                id='population-data-range'
+                onChange={(e) => onChangeSelectedPopulationDataLabel(e.target.value)}
+              >
                 {populationDataLabels.map((label) => (
                   <option value={label} key={label}>
                     {label}

@@ -8,4 +8,4 @@ type PrefecturesResponse = {
   result: Prefecture[];
 };
 
-export type { Prefecture,PrefecturesResponse };
+export type { Prefecture, PrefecturesResponse };

@@ -8,10 +8,10 @@ const statisticsControlLayout = style({
 
   '@media': {
     'screen and (max-width: 768px)': {
-      height: "360px",
-      overflowY: "auto"
-    }
-  }
+      height: '360px',
+      overflowY: 'auto',
+    },
+  },
 });
 
 const statisticsControlHeading = style({
@@ -29,4 +29,4 @@ const statisticsControlForm = style({
   borderRadius: '8px',
 });
 
-export { statisticsControlForm,statisticsControlHeading, statisticsControlLayout };
+export { statisticsControlForm, statisticsControlHeading, statisticsControlLayout };
