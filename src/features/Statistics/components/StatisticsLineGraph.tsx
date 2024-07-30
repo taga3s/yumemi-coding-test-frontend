@@ -64,25 +64,23 @@ const StatisticsLineGraph: FC<Props> = (props) => {
       {populationData.length === 0 ? (
         <span>都道府県を選択するとグラフが表示されます</span>
       ) : (
-        <div>
-          <div>
-            <label className={statisticsLineGraphSelectBox} htmlFor='population-data-range'>
-              人口範囲を選択します
-              <select
-                className={statisticsLineGraphSelectBoxInner}
-                id='population-data-range'
-                onChange={(e) => onChangeSelectedPopulationDataLabel(e.target.value)}
-              >
-                {populationDataLabels.map((label) => (
-                  <option value={label} key={label}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
+        <>
+          <label className={statisticsLineGraphSelectBox} htmlFor='population-data-range'>
+            人口範囲を選択します
+            <select
+              className={statisticsLineGraphSelectBoxInner}
+              id='population-data-range'
+              onChange={(e) => onChangeSelectedPopulationDataLabel(e.target.value)}
+            >
+              {populationDataLabels.map((label) => (
+                <option value={label} key={label} selected={label === selectedPopulationDataLabel}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
           <HighchartsReact highcharts={Highcharts} options={buildOptions(populationData, selectedPopulationDataLabel)} />
-        </div>
+        </>
       )}
     </div>
   );

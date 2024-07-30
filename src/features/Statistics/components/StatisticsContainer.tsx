@@ -26,7 +26,6 @@ const StatisticsContainer = () => {
     // if the target prefecture is already selected, remove it from the list
     if (selectedPrefectures.map((pref) => pref.prefCode).includes(selectedPrefecture.prefCode)) {
       setPopulationData((prev) => prev.filter((data) => data.prefCode !== selectedPrefecture.prefCode));
-      setSelectedPopulationDataLabel(populationData[0].data[0].label ?? '');
       setSelectedPrefectures((prev) => prev.filter((pref) => pref.prefCode !== selectedPrefecture.prefCode));
       return;
     }
@@ -45,7 +44,9 @@ const StatisticsContainer = () => {
         data: response.result.data,
       },
     ]);
-    setSelectedPopulationDataLabel(response.result.data[0].label);
+    if (selectedPopulationDataLabel === '') {
+      setSelectedPopulationDataLabel(response.result.data[0].label ?? '');
+    }
     setSelectedPrefectures([...selectedPrefectures, selectedPrefecture]);
   };
 
