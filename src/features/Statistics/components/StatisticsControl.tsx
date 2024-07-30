@@ -8,11 +8,11 @@ import { StatisticsControlCheckbox } from './StatisticsControlCheckbox';
 
 type Props = {
   selectedPrefectures: Prefecture[];
-  onRearrangeData: (targetPrefecture: Prefecture) => void;
+  onChangeRearrangeData: (targetPrefecture: Prefecture) => void;
 };
 
 const StatisticsControl: FC<Props> = (props) => {
-  const { selectedPrefectures, onRearrangeData } = props;
+  const { selectedPrefectures, onChangeRearrangeData } = props;
   const { prefecturesData, isLoading } = usePrefecturesData();
 
   return (
@@ -28,7 +28,7 @@ const StatisticsControl: FC<Props> = (props) => {
               prefName={prefecture.prefName}
               prefCode={prefecture.prefCode}
               checked={selectedPrefectures.some((pref) => pref.prefCode === prefecture.prefCode)}
-              onRearrangeData={onRearrangeData}
+              onChangeRearrangeData={onChangeRearrangeData}
             />
           ))}
         </form>

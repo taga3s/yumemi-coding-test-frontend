@@ -7,15 +7,15 @@ type Props = {
   prefName: string;
   prefCode: number;
   checked: boolean;
-  onRearrangeData: (targetPrefecture: Prefecture) => void;
+  onChangeRearrangeData: (targetPrefecture: Prefecture) => void;
 };
 
 const StatisticsControlCheckbox: FC<Props> = (props) => {
-  const { prefName, prefCode, checked, onRearrangeData } = props;
+  const { prefName, prefCode, checked, onChangeRearrangeData } = props;
 
   return (
     <label className={statisticsControlCheckBoxLabel} htmlFor={`${prefCode}`}>
-      <input type='checkbox' id={`${prefCode}`} checked={checked} onChange={() => onRearrangeData({ prefName, prefCode })} />
+      <input type='checkbox' id={`${prefCode}`} checked={checked} onChange={() => onChangeRearrangeData({ prefName, prefCode })} />
       {prefName}
     </label>
   );

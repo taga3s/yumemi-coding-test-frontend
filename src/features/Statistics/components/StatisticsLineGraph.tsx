@@ -3,7 +3,22 @@ import HighchartsReact from 'highcharts-react-official';
 import { type FC } from 'react';
 
 import type { PopulationPerYear } from '../../../api/population/types';
+import { PopulationData } from './StatisticsContainer';
 import { statisticsLineGraphLayout, statisticsLineGraphSelectBox, statisticsLineGraphSelectBoxInner } from './StatisticsLineGraph.css';
+
+const buildLabels = (populationData: PopulationData) => {
+  return populationData.length > 0 ? populationData[0].data.map((d) => d.label) : [];
+};
+
+const buildCategories = (populationData: PopulationData, label: string) => {
+  return populationData.length > 0 ? populationData[0].data.find((d) => d.label === label)?.data.map((data) => data.year) : [];
+};
+
+const buildSeries = (populationData: PopulationData, label: string) =>
+  populationData.map((data) => ({
+    name: data.prefName,
+    data: data.data.find((d) => d.label === label)?.data.map((d) => d.value) ?? [],
+  }));
 
 const buildOptions = (
   populationData: {
@@ -16,12 +31,6 @@ const buildOptions = (
   }[],
   label: string
 ) => {
-  const categories = populationData.length > 0 ? populationData[0].data.find((d) => d.label === label)?.data.map((data) => data.year) : [];
-  const series = populationData.map((data) => ({
-    name: data.prefName,
-    data: data.data.find((d) => d.label === label)?.data.map((d) => d.value) ?? [],
-  }));
-
   return {
     chart: {
       type: 'line',
@@ -30,26 +39,19 @@ const buildOptions = (
       text: `${label}推移`,
     },
     xAxis: {
-      categories,
+      categories: buildCategories(populationData, label),
     },
     yAxis: {
       title: {
         text: '人口数',
       },
     },
-    series,
+    series: buildSeries(populationData, label),
   };
 };
 
 type Props = {
-  populationData: {
-    prefCode: number;
-    prefName: string;
-    data: {
-      label: string;
-      data: PopulationPerYear[];
-    }[];
-  }[];
+  populationData: PopulationData;
   selectedPopulationDataLabel: string;
   onChangeSelectedPopulationDataLabel: (label: string) => void;
 };
@@ -57,7 +59,7 @@ type Props = {
 const StatisticsLineGraph: FC<Props> = (props) => {
   const { populationData, selectedPopulationDataLabel, onChangeSelectedPopulationDataLabel } = props;
 
-  const populationDataLabels = populationData.length > 0 ? populationData[0].data.map((d) => d.label) : [];
+  const populationDataLabels = buildLabels(populationData);
 
   return (
     <div className={statisticsLineGraphLayout}>
@@ -71,9 +73,10 @@ const StatisticsLineGraph: FC<Props> = (props) => {
               className={statisticsLineGraphSelectBoxInner}
               id='population-data-range'
               onChange={(e) => onChangeSelectedPopulationDataLabel(e.target.value)}
+              defaultValue={selectedPopulationDataLabel}
             >
               {populationDataLabels.map((label) => (
-                <option value={label} key={label} selected={label === selectedPopulationDataLabel}>
+                <option value={label} key={label}>
                   {label}
                 </option>
               ))}

@@ -3,18 +3,15 @@ type PopulationPerYear = {
   value: number;
 };
 
-type PopulationData = {
-  label: string;
-  data: PopulationPerYear[];
-};
-
 type PopulationResponse = {
   message: null;
   result: {
     boundaryYear: number;
-    label: string;
-    data: PopulationData[];
+    data: {
+      label: string;
+      data: PopulationPerYear[];
+    }[];
   };
 };
 
-export type { PopulationData, PopulationPerYear, PopulationResponse };
+export type { PopulationPerYear, PopulationResponse };

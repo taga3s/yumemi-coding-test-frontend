@@ -1,51 +1,38 @@
 import { useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-import { apiClient, PopulationData, PopulationResponse } from '../../../api';
-import type { Prefecture } from '../../../api/prefectures/types';
+import { fetchPopulationData, PopulationModel, PrefectureModel } from '../../../api';
 import { Message } from '../../Message';
 import { StatisticsControl } from './StatisticsControl';
 import { StatisticsLineGraph } from './StatisticsLineGraph';
 
-const fetcher = async (prefCode: number, abortController: AbortController) => {
-  return await apiClient<PopulationResponse>(`/population/composition/perYear?prefCode=${prefCode}`, abortController);
-};
+export type PopulationData = { prefCode: number; prefName: string; data: PopulationModel[] }[];
 
 const StatisticsContainer = () => {
-  const [populationData, setPopulationData] = useState<
-    {
-      prefCode: number;
-      prefName: string;
-      data: PopulationData[];
-    }[]
-  >([]);
-  const [selectedPrefectures, setSelectedPrefectures] = useState<Prefecture[]>([]);
+  const [populationData, setPopulationData] = useState<PopulationData>([]);
+  const [selectedPrefectures, setSelectedPrefectures] = useState<PrefectureModel[]>([]);
   const [selectedPopulationDataLabel, setSelectedPopulationDataLabel] = useState<string>('');
 
-  const onRearrangeData = async (selectedPrefecture: Prefecture) => {
+  const onChangeRearrangeData = async (selectedPrefecture: PrefectureModel) => {
     // if the input prefecture is already selected, remove it from the list
     if (selectedPrefectures.map((pref) => pref.prefCode).includes(selectedPrefecture.prefCode)) {
-      setPopulationData((prev) => prev.filter((data) => data.prefCode !== selectedPrefecture.prefCode));
-      setSelectedPrefectures((prev) => prev.filter((pref) => pref.prefCode !== selectedPrefecture.prefCode));
+      setPopulationData(populationData.filter((data) => data.prefCode !== selectedPrefecture.prefCode));
+      setSelectedPrefectures(selectedPrefectures.filter((pref) => pref.prefCode !== selectedPrefecture.prefCode));
       return;
     }
 
-    const abortController = new AbortController();
-    const response = await fetcher(selectedPrefecture.prefCode, abortController).catch((error) => {
-      throw error;
-    });
-    abortController.abort();
+    const data = await fetchPopulationData(selectedPrefecture.prefCode);
 
     setPopulationData([
       ...populationData,
       {
         prefCode: selectedPrefecture.prefCode,
         prefName: selectedPrefecture.prefName,
-        data: response.result.data,
+        data: data,
       },
     ]);
     if (selectedPopulationDataLabel === '') {
-      setSelectedPopulationDataLabel(response.result.data[0].label ?? '');
+      setSelectedPopulationDataLabel(data[0].label ?? '');
     }
     setSelectedPrefectures([...selectedPrefectures, selectedPrefecture]);
   };
@@ -56,7 +43,7 @@ const StatisticsContainer = () => {
 
   return (
     <ErrorBoundary fallback={<Message message='サーバーでエラーが発生しました' />}>
-      <StatisticsControl selectedPrefectures={selectedPrefectures} onRearrangeData={onRearrangeData} />
+      <StatisticsControl selectedPrefectures={selectedPrefectures} onChangeRearrangeData={onChangeRearrangeData} />
       <StatisticsLineGraph
         populationData={populationData}
         selectedPopulationDataLabel={selectedPopulationDataLabel}
