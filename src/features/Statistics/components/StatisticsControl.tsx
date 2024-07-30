@@ -19,7 +19,7 @@ const StatisticsControl: FC<Props> = (props) => {
     <div className={statisticsControlLayout}>
       <h2 className={statisticsControlHeading}>都道府県一覧</h2>
       {isLoading ? (
-        <Message message='Now loading...' />
+        <Message message='読み込み中' />
       ) : (
         <form className={statisticsControlForm}>
           {prefecturesData.map((prefecture) => (

@@ -5,13 +5,6 @@ import { vars } from '../../../common/variables.css';
 const statisticsControlLayout = style({
   width: '100%',
   marginTop: '24px',
-
-  '@media': {
-    'screen and (max-width: 768px)': {
-      height: '360px',
-      overflowY: 'auto',
-    },
-  },
 });
 
 const statisticsControlHeading = style({
@@ -27,6 +20,13 @@ const statisticsControlForm = style({
   padding: '16px',
   backgroundColor: vars.color.primary,
   borderRadius: '8px',
+
+  '@media': {
+    'screen and (max-width: 768px)': {
+      height: '360px',
+      overflowY: 'auto',
+    },
+  },
 });
 
 export { statisticsControlForm, statisticsControlHeading, statisticsControlLayout };
