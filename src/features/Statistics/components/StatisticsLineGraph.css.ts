@@ -5,7 +5,7 @@ import { vars } from '../../../common/variables.css';
 const statisticsLineGraphLayout = style({
   marginTop: '32px',
   padding: '10px 16px 16px',
-  backgroundColor: vars.color.secondary,
+  backgroundColor: vars.color.gray,
   borderRadius: '8px',
 });
 

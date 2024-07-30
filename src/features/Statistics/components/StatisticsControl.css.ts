@@ -18,7 +18,7 @@ const statisticsControlForm = style({
   flexWrap: 'wrap',
   marginTop: '16px',
   padding: '16px',
-  backgroundColor: vars.color.primary,
+  backgroundColor: vars.color.green,
   borderRadius: '8px',
 
   '@media': {

@@ -8,9 +8,13 @@ const statisticsControlCheckBoxLabel = style({
   gap: '8px',
   width: 'fit-content',
   padding: '12px',
-  backgroundColor: vars.color.secondary,
+  backgroundColor: vars.color.gray,
   fontSize: '16px',
   borderRadius: '8px',
+
+  ':hover': {
+    backgroundColor: vars.color.grayHovered,
+  },
 });
 
 export { statisticsControlCheckBoxLabel };

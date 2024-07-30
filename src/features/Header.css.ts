@@ -9,7 +9,7 @@ const headerLayout = style({
   width: '100%',
   height: '60px',
   padding: '8px 20px',
-  backgroundColor: vars.color.primary,
+  backgroundColor: vars.color.green,
 });
 
 const headerTitle = style({

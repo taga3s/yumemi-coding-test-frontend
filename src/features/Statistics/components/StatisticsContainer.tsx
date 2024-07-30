@@ -23,7 +23,7 @@ const StatisticsContainer = () => {
   const [selectedPopulationDataLabel, setSelectedPopulationDataLabel] = useState<string>('');
 
   const onRearrangeData = async (selectedPrefecture: Prefecture) => {
-    // if the target prefecture is already selected, remove it from the list
+    // if the input prefecture is already selected, remove it from the list
     if (selectedPrefectures.map((pref) => pref.prefCode).includes(selectedPrefecture.prefCode)) {
       setPopulationData((prev) => prev.filter((data) => data.prefCode !== selectedPrefecture.prefCode));
       setSelectedPrefectures((prev) => prev.filter((pref) => pref.prefCode !== selectedPrefecture.prefCode));

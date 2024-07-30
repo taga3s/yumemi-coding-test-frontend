@@ -16,7 +16,7 @@ const buildOptions = (
   }[],
   label: string
 ) => {
-  const categories = populationData[0].data.find((d) => d.label === label)?.data.map((data) => data.year) ?? [];
+  const categories = populationData.length > 0 ? populationData[0].data.find((d) => d.label === label)?.data.map((data) => data.year) : [];
   const series = populationData.map((data) => ({
     name: data.prefName,
     data: data.data.find((d) => d.label === label)?.data.map((d) => d.value) ?? [],
