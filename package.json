@@ -21,7 +21,6 @@
     "react-error-boundary": "^4.0.13"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.3",
     "@eslint/compat": "^1.1.1",
     "@eslint/js": "^9.8.0",
     "@types/eslint": "^8.56.7",
