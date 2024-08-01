@@ -1,4 +1,4 @@
-import { PopulationData } from "../StatisticsContainer";
+import { PopulationData } from '../StatisticsContainer';
 
 const buildLabels = (populationData: PopulationData) => {
   return populationData.length > 0 ? populationData[0].data.map((d) => d.label) : [];
@@ -12,12 +12,9 @@ const buildSeries = (populationData: PopulationData, label: string) =>
   populationData.map((data) => ({
     name: data.prefName,
     data: data.data.find((d) => d.label === label)?.data.map((d) => d.value) ?? [],
-}));
+  }));
 
-const buildOptions = (
-  populationData: PopulationData,
-  label: string
-) => {
+const buildOptions = (populationData: PopulationData, label: string) => {
   return {
     chart: {
       type: 'line',
@@ -37,10 +34,4 @@ const buildOptions = (
   };
 };
 
-export {
-  buildLabels,
-  buildCategories,
-  buildSeries,
-  buildOptions
-}
-
+export { buildCategories, buildLabels, buildOptions, buildSeries };

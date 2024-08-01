@@ -2,9 +2,9 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { type FC } from 'react';
 
+import { buildLabels, buildOptions } from './funcs/graphBuilder';
 import { PopulationData } from './StatisticsContainer';
 import { statisticsLineGraphLayout, statisticsLineGraphSelectBox, statisticsLineGraphSelectBoxInner } from './StatisticsLineGraph.css';
-import { buildLabels, buildOptions } from './funcs/graphBuilder';
 
 type Props = {
   populationData: PopulationData;

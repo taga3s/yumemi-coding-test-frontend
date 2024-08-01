@@ -8,6 +8,6 @@ export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
   test: {
     globals: true,
-    environment: "jsdom",
-  }
+    environment: 'jsdom',
+  },
 });
