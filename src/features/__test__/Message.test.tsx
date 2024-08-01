@@ -1,9 +1,10 @@
-import { render } from "@testing-library/react";
-import { expect, test } from "vitest";
-import { Message } from "../Message";
+import { render } from '@testing-library/react';
+import { expect, test } from 'vitest';
 
-test("messageが表示されること", () => {
-  render(<Message message="Hello, World!" />);
+import { Message } from '../Message';
 
-  expect(document.querySelector("span")?.textContent).toEqual("Hello, World!");
-})
+test('messageが表示されること', () => {
+  render(<Message message='Hello, World!' />);
+
+  expect(document.querySelector('span')?.textContent).toEqual('Hello, World!');
+});
