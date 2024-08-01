@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 
 import type { Prefecture } from '../../../api/prefectures/types';
-import { statisticsControlCheckBoxLabel } from './StatisticsControlCheckbox.css';
+import { statisticsControlCheckboxLabel } from './StatisticsControlCheckbox.css';
 
 type Props = {
   prefName: string;
@@ -14,7 +14,7 @@ const StatisticsControlCheckbox: FC<Props> = (props) => {
   const { prefName, prefCode, checked, onChangeRearrangeData } = props;
 
   return (
-    <label className={statisticsControlCheckBoxLabel} htmlFor={`${prefCode}`}>
+    <label className={statisticsControlCheckboxLabel} htmlFor={`${prefCode}`}>
       <input type='checkbox' id={`${prefCode}`} checked={checked} onChange={() => onChangeRearrangeData({ prefName, prefCode })} />
       {prefName}
     </label>

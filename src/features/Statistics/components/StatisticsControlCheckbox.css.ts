@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css';
 
 import { vars } from '../../../common/variables.css';
 
-const statisticsControlCheckBoxLabel = style({
+const statisticsControlCheckboxLabel = style({
   display: 'flex',
   alignItems: 'center',
   gap: '8px',
@@ -17,4 +17,4 @@ const statisticsControlCheckBoxLabel = style({
   },
 });
 
-export { statisticsControlCheckBoxLabel };
+export { statisticsControlCheckboxLabel };

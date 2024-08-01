@@ -2,53 +2,9 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { type FC } from 'react';
 
-import type { PopulationPerYear } from '../../../api/population/types';
 import { PopulationData } from './StatisticsContainer';
 import { statisticsLineGraphLayout, statisticsLineGraphSelectBox, statisticsLineGraphSelectBoxInner } from './StatisticsLineGraph.css';
-
-const buildLabels = (populationData: PopulationData) => {
-  return populationData.length > 0 ? populationData[0].data.map((d) => d.label) : [];
-};
-
-const buildCategories = (populationData: PopulationData, label: string) => {
-  return populationData.length > 0 ? populationData[0].data.find((d) => d.label === label)?.data.map((data) => data.year) : [];
-};
-
-const buildSeries = (populationData: PopulationData, label: string) =>
-  populationData.map((data) => ({
-    name: data.prefName,
-    data: data.data.find((d) => d.label === label)?.data.map((d) => d.value) ?? [],
-  }));
-
-const buildOptions = (
-  populationData: {
-    prefCode: number;
-    prefName: string;
-    data: {
-      label: string;
-      data: PopulationPerYear[];
-    }[];
-  }[],
-  label: string
-) => {
-  return {
-    chart: {
-      type: 'line',
-    },
-    title: {
-      text: `${label}推移`,
-    },
-    xAxis: {
-      categories: buildCategories(populationData, label),
-    },
-    yAxis: {
-      title: {
-        text: '人口数',
-      },
-    },
-    series: buildSeries(populationData, label),
-  };
-};
+import { buildLabels, buildOptions } from './funcs/graphBuilder';
 
 type Props = {
   populationData: PopulationData;
