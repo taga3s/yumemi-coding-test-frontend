@@ -17,7 +17,8 @@ const StatisticsLineGraphSelectbox: FC<Props> = (props) => {
         className={statisticsLineGraphSelectboxInner}
         id='population-data-range'
         onChange={(e) => onChangeSelectedPopulationDataLabel(e.target.value)}
-        defaultValue={selectedPopulationDataLabel}
+        value={selectedPopulationDataLabel}
+        role='combobox'
       >
         {populationDataLabels.map((label) => (
           <option value={label} key={label}>
